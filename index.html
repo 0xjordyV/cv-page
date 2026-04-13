@@ -7,6 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Preconnect to Twitter CDN so widgets.js loads fast when user navigates to X Posts -->
+  <link rel="preconnect" href="https://platform.twitter.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.syndication.twimg.com" crossorigin />
+  <link rel="dns-prefetch" href="https://platform.twitter.com" />
+  <link rel="prefetch" href="https://platform.twitter.com/widgets.js" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -525,6 +530,24 @@
     <a href="#timeline" class="btn btn-p">See my story</a>
     <a href="mailto:jmedrano0929@gmail.com" class="btn btn-g">Get in touch</a>
   </div>
+  <div class="soc-row" style="margin-top:16px;">
+    <a href="https://x.com/0xJordyV" class="soc-a" target="_blank" rel="noopener">
+      <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      @0xJordyV
+    </a>
+    <a href="https://linkedin.com/in/jorgeluis009" class="soc-a" target="_blank" rel="noopener">
+      <svg width="11" height="11" fill="none" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.8"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.8"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.8"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/0xjordyV" class="soc-a" target="_blank" rel="noopener">
+      <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      GitHub
+    </a>
+    <a href="mailto:jmedrano0929@gmail.com" class="soc-a">
+      <svg width="11" height="11" fill="none" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8"/></svg>
+      Email
+    </a>
+  </div>
   <div class="hero-stats">
     <div class="hst">
       <div class="hst-n">20<em>k+</em></div>
@@ -874,9 +897,9 @@
       </div>
       <div class="speak-body">
         <p class="speak-yr">Dec 2022 · Tec de Monterrey, SLP</p>
-        <h3 class="speak-h">Futuro3 — "Web3: El futuro del internet"</h3>
+        <h3 class="speak-h">Futuro3: "Web3: El futuro del internet"</h3>
         <p class="speak-p">
-          Speaker at <em>Futuro3: La revolución será descentralizada</em> — 3 days of Web3,
+          Speaker at <em>Futuro3: La revolución será descentralizada</em>, 3 days of Web3,
           Blockchain, Metaverse & VR. My 3 PM slot: Web3 fundamentals and what's next.
           Shared stage with César Gaytán, Luis Daniel Beltrán, Irving Hidrogo, Daniel Camacho,
           Ricardo Bustos, and 10+ others.
@@ -901,7 +924,7 @@
       </div>
       <div class="speak-body">
         <p class="speak-yr">2023 · UNIAT, San Luis Potosí</p>
-        <h3 class="speak-h">AI Keynote — Semana UNIAT 2023</h3>
+        <h3 class="speak-h">AI Keynote: Semana UNIAT 2023</h3>
         <p class="speak-p">
           AI masterclass on behalf of Vibing Studios to design students at UNIAT
           during their 20th anniversary. Certificate signed by the SLP Director.
@@ -915,7 +938,7 @@
       </div>
       <div class="speak-body">
         <p class="speak-yr">2022 · New York City</p>
-        <h3 class="speak-h">NFT NYC — Meetups & Networking</h3>
+        <h3 class="speak-h">NFT NYC: Meetups &amp; Networking</h3>
         <p class="speak-p">
           Attended NFT NYC and ran community meetups for Vibing Studios.
           Founders and builders from across the Solana ecosystem.
@@ -959,14 +982,14 @@
   <div class="about-grid">
     <div class="about-prose">
       <p>
-        Mexican developer. I spent several years as CIO at <strong>Vibing Studios</strong> —
-        a Web3 & Web2 game and art studio on Solana — shipping generative NFT pipelines,
+        Mexican developer. I spent several years as CIO at <strong>Vibing Studios</strong>,
+        a Web3 &amp; Web2 game and art studio on Solana, shipping generative NFT pipelines,
         mint dapps, P2E mechanics, community tooling, and a viral $BONK activation.
       </p>
       <p>
         Left in December 2024. Since then: data analysis at <strong>INEGI</strong>
         (Mexico's national statistics agency) and running independently as an
-        <strong>Automation Consultant</strong> — AI workflows, ERPs, and clinic systems
+        <strong>Automation Consultant</strong>: AI workflows, ERPs, and clinic systems
         for small businesses.
       </p>
       <p>

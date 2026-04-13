@@ -189,7 +189,7 @@
   <div class="page-head">
     <p class="sec-label">Social proof</p>
     <h1 class="sec-h">X Posts</h1>
-    <p class="sec-sub">A record of my work — shipped dapps, mint pages, NFT drops, and activations, documented in real time on X (Twitter).</p>
+    <p class="sec-sub">A record of my work: shipped dapps, mint pages, NFT drops, and activations, documented in real time on X (Twitter).</p>
   </div>
 
   <!-- ─── VIBE KNIGHTS ─── -->
@@ -308,9 +308,9 @@
         <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.8"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.8"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.8"/></svg>
         LinkedIn
       </a>
-      <a href="https://github.com/0xjarz" class="ft-a" target="_blank" rel="noopener">
+      <a href="https://github.com/0xjordyV" class="ft-a" target="_blank" rel="noopener">
         <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-        0xjarz
+        0xjordyV
       </a>
     </div>
   </div>
@@ -320,99 +320,99 @@
 <!-- Twitter/X embed widget -->
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script>
-  /*
-    Tweets to embed — map: container-id → tweet URL
-    Twitter embed widget renders into the container replacing the skeleton.
-    Theme is passed as data-theme="dark" via the blockquote.
-  */
+(function () {
   var tweets = [
-    /* Vibe Knights */
     ['tw-1657544565157445632', 'https://x.com/0xJordyV/status/1657544565157445632'],
     ['tw-1657100529363828736', 'https://x.com/0xJordyV/status/1657100529363828736'],
     ['tw-1649840741517017089', 'https://x.com/0xJordyV/status/1649840741517017089'],
     ['tw-1644432940477083664', 'https://x.com/0xJordyV/status/1644432940477083664'],
-    /* Bonk */
     ['tw-1610314237598990338', 'https://x.com/luis9614/status/1610314237598990338'],
-    /* NYC */
     ['tw-1539701359670337537', 'https://x.com/0xJordyV/status/1539701359670337537'],
     ['tw-1539648883948941312', 'https://x.com/0xJordyV/status/1539648883948941312'],
-    /* Bitmon */
     ['tw-1505307053392384004', 'https://x.com/0xJordyV/status/1505307053392384004'],
     ['tw-1502342991591137289', 'https://x.com/0xJordyV/status/1502342991591137289'],
-    /* Monkettes */
     ['tw-1495882640225976321', 'https://x.com/0xJordyV/status/1495882640225976321'],
     ['tw-1482811431418572808', 'https://x.com/0xJordyV/status/1482811431418572808'],
     ['tw-1461439445224366087', 'https://x.com/thejpeglord/status/1461439445224366087'],
     ['tw-1583108594861371395', 'https://x.com/MrCamel__/status/1583108594861371395'],
-    /* PolisPay */
     ['tw-1035604384166506497', 'https://x.com/PolisChain/status/1035604384166506497'],
-    /* Astra Arc */
     ['tw-2024596877803442443', 'https://x.com/AstraArc/status/2024596877803442443'],
   ];
 
-  function embedAll() {
-    tweets.forEach(function(pair) {
-      var id   = pair[0];
-      var url  = pair[1];
-      var wrap = document.getElementById(id);
-      if (!wrap) return;
+  /* Build a map id -> url for quick lookup */
+  var urlMap = {};
+  tweets.forEach(function (p) { urlMap[p[0]] = p[1]; });
 
-      /* clear skeleton */
-      wrap.innerHTML = '';
-
-      twttr.widgets.createTweet(
-        url.split('/status/')[1],          /* tweet id */
-        wrap,
-        {
-          theme: 'dark',
-          dnt: true,
-          conversation: 'none',
-          /* resolve the author handle from the URL */
-          tweetAuthor: url.split('x.com/')[1].split('/status')[0]
-        }
-      ).then(function(el) {
-        if (!el) {
-          /* embed failed — show fallback link */
-          wrap.innerHTML =
-            '<a href="' + url + '" target="_blank" rel="noopener" '+
-            'style="display:flex;align-items:center;justify-content:center;'+
-            'gap:8px;padding:24px;font-size:12px;color:var(--muted2);'+
-            'text-decoration:none;width:100%;font-family:Inter,sans-serif;">'+
-            '<svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">'+
-            '<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231'+
-            '-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm'+
-            '-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'+
-            'View on X (Twitter) →</a>';
-        }
-      });
-    });
-  }
-
-  /* Wait for twitter widget script to be ready */
-  if (typeof twttr !== 'undefined' && twttr.ready) {
-    twttr.ready(embedAll);
-  } else {
-    window.twttr = window.twttr || {};
-    var _oldOnLoad = window.onload;
-    window.onload = function() {
-      if (_oldOnLoad) _oldOnLoad();
-      if (typeof twttr !== 'undefined' && twttr.ready) {
-        twttr.ready(embedAll);
+  /* ── embed a single tweet, guarded against double-calls ── */
+  function embed(el) {
+    if (el.dataset.loaded) return;   /* guard: already started */
+    el.dataset.loaded = '1';
+    var url = urlMap[el.id];
+    if (!url) return;
+    el.innerHTML = '';
+    var tweetId = url.split('/status/')[1];
+    twttr.widgets.createTweet(tweetId, el, {
+      theme: 'dark', dnt: true, conversation: 'none'
+    }).then(function (iframe) {
+      if (!iframe) {
+        /* fallback: plain link if embed blocked */
+        el.innerHTML =
+          '<a href="' + url + '" target="_blank" rel="noopener" ' +
+          'style="display:flex;align-items:center;justify-content:center;' +
+          'gap:8px;padding:24px;font-size:12px;color:var(--muted2);' +
+          'text-decoration:none;width:100%;font-family:Inter,sans-serif;">' +
+          '<svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">' +
+          '<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231' +
+          '-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm' +
+          '-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>' +
+          'View on X →</a>';
       }
-    };
-    document.addEventListener('DOMContentLoaded', function() {
-      /* poll until twttr is ready */
-      var tries = 0;
-      var poll = setInterval(function() {
-        tries++;
-        if (typeof twttr !== 'undefined' && twttr.widgets) {
-          clearInterval(poll);
-          embedAll();
-        }
-        if (tries > 60) clearInterval(poll);
-      }, 300);
     });
   }
+
+  /* ── lazy loader: uses IntersectionObserver so only visible tweets load first ── */
+  var twttrReady = false;
+  var pending = []; /* elements waiting for twttr to be ready */
+
+  var observer = window.IntersectionObserver
+    ? new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          observer.unobserve(el);
+          if (twttrReady) {
+            embed(el);
+          } else {
+            pending.push(el); /* twttr not ready yet, queue it */
+          }
+        });
+      }, { rootMargin: '200px 0px' })
+    : null;
+
+  tweets.forEach(function (p) {
+    var el = document.getElementById(p[0]);
+    if (!el) return;
+    if (observer) {
+      observer.observe(el);
+    } else {
+      pending.push(el); /* no IO support, load all */
+    }
+  });
+
+  /* ── wait for twttr, then drain the queue ── */
+  var tries = 0;
+  var poll = setInterval(function () {
+    tries++;
+    if (window.twttr && window.twttr.widgets && window.twttr.widgets.createTweet) {
+      clearInterval(poll);
+      twttrReady = true;
+      /* embed anything already in viewport (or queued without IO) */
+      var queue = pending.splice(0);
+      queue.forEach(embed);
+    }
+    if (tries > 150) clearInterval(poll); /* 15 s timeout */
+  }, 100);
+}());
 </script>
 
 </body>

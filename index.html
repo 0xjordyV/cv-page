@@ -7,11 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <!-- Preconnect to Twitter CDN so widgets.js loads fast when user navigates to X Posts -->
-  <link rel="preconnect" href="https://platform.twitter.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.syndication.twimg.com" crossorigin />
-  <link rel="dns-prefetch" href="https://platform.twitter.com" />
-  <link rel="prefetch" href="https://platform.twitter.com/widgets.js" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -404,7 +399,7 @@
 <div id="lb">
   <span id="lb-close" onclick="closeLB()">×</span>
   <div id="lb-img-wrap">
-    <img id="lb-img" src="" alt="" />
+    <img loading="lazy" decoding="async" id="lb-img" src="" alt="" />
   </div>
   <div id="lb-zoom-hint">scroll / pinch to zoom · drag to pan · click outside to close</div>
   <div id="lb-cap"></div>
@@ -602,7 +597,7 @@
       </div>
       <div class="ig c1">
         <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)">
-          <img src="images/polispay-screenshot.png" alt="PolisPay 2018" />
+          <img loading="lazy" decoding="async" src="images/polispay-screenshot.webp" alt="PolisPay 2018" />
         </div>
       </div>
     </div>
@@ -636,19 +631,19 @@
         <a class="xlink" href="https://x.com/MrCamel__/status/1583108594861371395" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Community mention</a>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/monkettes-homepage.png" alt="Monkettes homepage" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/monkettes-homepage2.png" alt="Monkettes about" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/monkettes-homepage.webp" alt="Monkettes homepage" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/monkettes-homepage2.webp" alt="Monkettes about" /></div>
       </div>
       <div class="ig c3">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/monkettes-gobananas.png" alt="Go Bananas tool" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/monkettes-gobananas2.png" alt="Go Bananas reveal" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/monkettes-gobananas.webp" alt="Go Bananas tool" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/monkettes-gobananas2.webp" alt="Go Bananas reveal" /></div>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/monkettes-gobananas3.png" alt="Go Bananas hub" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/monkettes-collection-screenshot.png" alt="Generation pipeline, JSONs + PNGs on ARweave" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/monkettes-gobananas3.webp" alt="Go Bananas hub" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/monkettes-collection-screenshot.webp" alt="Generation pipeline, JSONs + PNGs on ARweave" /></div>
       </div>
       <div class="ig c1">
-        <div class="slot r167 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/vibetown1.png" alt="VibingTown pixel world" /></div>
+        <div class="slot r167 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/vibetown1.png" alt="VibingTown pixel world" /></div>
       </div>
     </div>
 
@@ -672,11 +667,11 @@
         <a class="xlink" href="https://x.com/0xJordyV/status/1539648883948941312" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>NYC tweet 2</a>
       </div>
       <div class="nyc-g">
-        <div class="big zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/nyc_1.JPG" alt="NFT NYC main" style="width:100%;height:100%;object-fit:cover;" /></div>
-        <div class="sm zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/nyc_2.jfif" alt="NYC 2" style="width:100%;height:100%;object-fit:cover;" /></div>
-        <div class="sm zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/nyc_3.JPG" alt="NYC 3" style="width:100%;height:100%;object-fit:cover;" /></div>
-        <div class="sm zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/nyc_4.JPG" alt="NYC 4" style="width:100%;height:100%;object-fit:cover;" /></div>
-        <div class="sm zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/nyc_5.JPG" alt="NYC 5" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="big zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/nyc_1.webp" alt="NFT NYC main" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="sm zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/nyc_2.webp" alt="NYC 2" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="sm zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/nyc_3.webp" alt="NYC 3" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="sm zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/nyc_4.webp" alt="NYC 4" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="sm zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/nyc_5.webp" alt="NYC 5" style="width:100%;height:100%;object-fit:cover;" /></div>
       </div>
     </div>
 
@@ -707,24 +702,24 @@
         <a class="xlink" href="https://x.com/0xJordyV/status/1502342991591137289" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Bitmon tweet</a>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/bitmon-homepage2.png" alt="Bitmon hero" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/bitmon-homepage3.png" alt="Bitmon about" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/bitmon-homepage2.webp" alt="Bitmon hero" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/bitmon-homepage3.webp" alt="Bitmon about" /></div>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/bitmon-homepage5.png" alt="Trainer Creator" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/bitmon-homepage4-trainerviewer.jpg" alt="Trainer Viewer" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/bitmon-homepage5.webp" alt="Trainer Creator" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/bitmon-homepage4-trainerviewer.webp" alt="Trainer Viewer" /></div>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/bitmon-homepage4.jpg" alt="$BIT token bridge" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/bitmon-homepage6.png" alt="Bitmon gameplay" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/bitmon-homepage4.webp" alt="$BIT token bridge" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/bitmon-homepage6.webp" alt="Bitmon gameplay" /></div>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/vibing-marketplace.png" alt="Bitmon marketplace ($BIT/$VIBE)" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/bitmon-roadmap.jpg" alt="Bitmon roadmap" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/vibing-marketplace.webp" alt="Bitmon marketplace ($BIT/$VIBE)" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/bitmon-roadmap.webp" alt="Bitmon roadmap" /></div>
       </div>
       <div class="scroll-frame">
         <div class="zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)">
-          <img src="images/bitmon-homepagelargescreenshot.jpg" alt="Bitmon full page" />
+          <img loading="lazy" decoding="async" src="images/bitmon-homepagelargescreenshot.webp" alt="Bitmon full page" />
         </div>
       </div>
     </div>
@@ -757,20 +752,20 @@
         <a class="xlink" href="https://x.com/0xJordyV/status/1644432940477083664" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>VK tweet 2</a>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/vibeknights-homepage.png" alt="Vibe Knights v1" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/vibeknights-homepage-newversion.png" alt="Vibe Knights new" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/vibeknights-homepage.webp" alt="Vibe Knights v1" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/vibeknights-homepage-newversion.webp" alt="Vibe Knights new" /></div>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/vibeknights-homepage2.png" alt="Vibe Knights mint page" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/vibeknights-homepage3.png" alt="Vibe Knights claim token" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/vibeknights-homepage2.webp" alt="Vibe Knights mint page" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/vibeknights-homepage3.webp" alt="Vibe Knights claim token" /></div>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/artmapvibeknights.png" alt="Art Map" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/artmapvibeknightszoom.png" alt="Art Map zoomed" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/artmapvibeknights.webp" alt="Art Map" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/artmapvibeknightszoom.webp" alt="Art Map zoomed" /></div>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/vibemapSocial.png" alt="Holder world map, privacy first" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/vibeknights-homepage-newversion3.png" alt="Vibe Kingdom" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/vibemapSocial.webp" alt="Holder world map, privacy first" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/vibeknights-homepage-newversion3.webp" alt="Vibe Kingdom" /></div>
       </div>
     </div>
 
@@ -795,7 +790,7 @@
         <a class="xlink" href="https://x.com/luis9614/status/1610314237598990338" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Bonk dapp live</a>
       </div>
       <div class="ig c1">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/bonk-activation.png" alt="$BONK dapp" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/bonk-activation.webp" alt="$BONK dapp" /></div>
       </div>
     </div>
 
@@ -818,17 +813,17 @@
         <span class="chip">Multi-project</span>
       </div>
       <div class="ig c2">
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/vibing-studios-site.png" alt="Vibing Studios homepage" /></div>
-        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/vibingprojectsscreenshotfromweb.png" alt="Vibing projects lineup" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/vibing-studios-site.webp" alt="Vibing Studios homepage" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/vibingprojectsscreenshotfromweb.webp" alt="Vibing projects lineup" /></div>
       </div>
       <div class="ig c1">
         <div class="slot zoomable" style="aspect-ratio:16/5; background:var(--bg3);" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)">
-          <img src="images/partners-vibing-screenshot.png" alt="Vibing Studios partners" style="object-fit:contain;" />
+          <img loading="lazy" decoding="async" src="images/partners-vibing-screenshot.webp" alt="Vibing Studios partners" style="object-fit:contain;" />
         </div>
       </div>
       <div class="scroll-frame">
         <div class="zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)">
-          <img src="images/vibing-studios-site-largescreenshot.png" alt="Vibing Studios full page" />
+          <img loading="lazy" decoding="async" src="images/vibing-studios-site-largescreenshot.webp" alt="Vibing Studios full page" />
         </div>
       </div>
     </div>
@@ -893,7 +888,7 @@
 
     <div class="speak-card">
       <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)" style="display:block;">
-        <img src="images/futuro3-event.png" alt="Futuro3" />
+        <img loading="lazy" decoding="async" src="images/futuro3-event.webp" alt="Futuro3" />
       </div>
       <div class="speak-body">
         <p class="speak-yr">Dec 2022 · Tec de Monterrey, SLP</p>
@@ -911,16 +906,16 @@
 
     <div class="speak-card" style="overflow:hidden;">
       <div class="ig c2" style="border-radius:0; height:100%;">
-        <div class="slot zoomable" style="aspect-ratio:4/3;" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/futuro3-event0.png" alt="Futuro3 agenda" /></div>
-        <div class="slot zoomable" style="aspect-ratio:4/3;" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/futuro3-event2.png" alt="Futuro3 event" /></div>
-        <div class="slot zoomable" style="aspect-ratio:4/3;" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/futuro3-event3.png" alt="Futuro3 stage" /></div>
-        <div class="slot zoomable" style="aspect-ratio:4/3;" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img src="images/futuro3-event3-participants.png" alt="Futuro3 participants" /></div>
+        <div class="slot zoomable" style="aspect-ratio:4/3;" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/futuro3-event0.webp" alt="Futuro3 agenda" /></div>
+        <div class="slot zoomable" style="aspect-ratio:4/3;" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/futuro3-event2.webp" alt="Futuro3 event" /></div>
+        <div class="slot zoomable" style="aspect-ratio:4/3;" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/futuro3-event3.webp" alt="Futuro3 stage" /></div>
+        <div class="slot zoomable" style="aspect-ratio:4/3;" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/futuro3-event3-participants.webp" alt="Futuro3 participants" /></div>
       </div>
     </div>
 
     <div class="speak-card">
       <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)" style="display:block;">
-        <img src="images/uniat-certificate.png" alt="UNIAT certificate" />
+        <img loading="lazy" decoding="async" src="images/uniat-certificate.webp" alt="UNIAT certificate" />
       </div>
       <div class="speak-body">
         <p class="speak-yr">2023 · UNIAT, San Luis Potosí</p>
@@ -934,7 +929,7 @@
 
     <div class="speak-card">
       <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)" style="display:block;">
-        <img src="images/nyc_1.JPG" alt="NFT NYC" />
+        <img loading="lazy" decoding="async" src="images/nyc_1.webp" alt="NFT NYC" />
       </div>
       <div class="speak-body">
         <p class="speak-yr">2022 · New York City</p>

@@ -7,6 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Twitter CDN: preconnect opens TCP+TLS before the script even loads -->
+  <link rel="preconnect" href="https://platform.twitter.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.syndication.twimg.com" crossorigin />
+  <link rel="preconnect" href="https://abs.twimg.com" crossorigin />
+  <link rel="preconnect" href="https://pbs.twimg.com" crossorigin />
+  <link rel="dns-prefetch" href="https://t.co" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -125,7 +131,7 @@
       border-radius: 6px;
       overflow: hidden;
       transition: border-color .2s, transform .2s;
-      min-height: 180px;
+      min-height: 420px;   /* matches real tweet height — prevents CLS */
       display: flex; align-items: stretch;
     }
     .tweet-wrap:hover { border-color: var(--p); transform: translateY(-2px); }
@@ -317,10 +323,11 @@
   <div class="ft-bottom">Single file · No build tools · GitHub Pages</div>
 </footer>
 
-<!-- Twitter/X embed widget -->
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<!-- Twitter widget: loaded dynamically so onload fires synchronously → no polling needed -->
 <script>
 (function () {
+  'use strict';
+
   var tweets = [
     ['tw-1657544565157445632', 'https://x.com/0xJordyV/status/1657544565157445632'],
     ['tw-1657100529363828736', 'https://x.com/0xJordyV/status/1657100529363828736'],
@@ -339,27 +346,28 @@
     ['tw-2024596877803442443', 'https://x.com/AstraArc/status/2024596877803442443'],
   ];
 
-  /* Build a map id -> url for quick lookup */
+  /* index url by element id */
   var urlMap = {};
   tweets.forEach(function (p) { urlMap[p[0]] = p[1]; });
 
-  /* ── embed a single tweet, guarded against double-calls ── */
+  /* ── embed one tweet, guarded against double-calls ── */
   function embed(el) {
-    if (el.dataset.loaded) return;   /* guard: already started */
+    if (el.dataset.loaded) return;
     el.dataset.loaded = '1';
     var url = urlMap[el.id];
     if (!url) return;
     el.innerHTML = '';
-    var tweetId = url.split('/status/')[1];
-    twttr.widgets.createTweet(tweetId, el, {
-      theme: 'dark', dnt: true, conversation: 'none'
-    }).then(function (iframe) {
+    window.twttr.widgets.createTweet(
+      url.split('/status/')[1],
+      el,
+      { dnt: true, theme: 'dark', conversation: 'none' }
+    ).then(function (iframe) {
       if (!iframe) {
-        /* fallback: plain link if embed blocked */
+        /* embed blocked → plain fallback link */
         el.innerHTML =
           '<a href="' + url + '" target="_blank" rel="noopener" ' +
           'style="display:flex;align-items:center;justify-content:center;' +
-          'gap:8px;padding:24px;font-size:12px;color:var(--muted2);' +
+          'gap:8px;padding:32px;font-size:12px;color:var(--muted2);' +
           'text-decoration:none;width:100%;font-family:Inter,sans-serif;">' +
           '<svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">' +
           '<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231' +
@@ -370,48 +378,31 @@
     });
   }
 
-  /* ── lazy loader: uses IntersectionObserver so only visible tweets load first ── */
-  var twttrReady = false;
-  var pending = []; /* elements waiting for twttr to be ready */
+  /* ── lazy loader: 400px rootMargin pre-loads tweets before user reaches them ── */
+  function init() {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+        embed(entry.target);
+      });
+    }, { rootMargin: '400px 0px' });
 
-  var observer = window.IntersectionObserver
-    ? new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var el = entry.target;
-          observer.unobserve(el);
-          if (twttrReady) {
-            embed(el);
-          } else {
-            pending.push(el); /* twttr not ready yet, queue it */
-          }
-        });
-      }, { rootMargin: '200px 0px' })
-    : null;
+    tweets.forEach(function (p) {
+      var el = document.getElementById(p[0]);
+      if (el) io.observe(el);
+    });
+  }
 
-  tweets.forEach(function (p) {
-    var el = document.getElementById(p[0]);
-    if (!el) return;
-    if (observer) {
-      observer.observe(el);
-    } else {
-      pending.push(el); /* no IO support, load all */
-    }
-  });
+  /* ── dynamic script load → onload fires once twttr is fully ready ── */
+  /* No setInterval needed: onload is the synchronous signal that twttr exists */
+  var s = document.createElement('script');
+  s.src   = 'https://platform.twitter.com/widgets.js';
+  s.async = true;
+  s.charset = 'utf-8';
+  s.onload  = init;   /* guaranteed: twttr.widgets is available here */
+  document.head.appendChild(s);
 
-  /* ── wait for twttr, then drain the queue ── */
-  var tries = 0;
-  var poll = setInterval(function () {
-    tries++;
-    if (window.twttr && window.twttr.widgets && window.twttr.widgets.createTweet) {
-      clearInterval(poll);
-      twttrReady = true;
-      /* embed anything already in viewport (or queued without IO) */
-      var queue = pending.splice(0);
-      queue.forEach(embed);
-    }
-    if (tries > 150) clearInterval(poll); /* 15 s timeout */
-  }, 100);
 }());
 </script>
 

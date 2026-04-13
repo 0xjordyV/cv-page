@@ -391,6 +391,20 @@
       footer { padding: 40px 20px 28px; }
       .ft { flex-direction: column; }
     }
+
+    /* ── SCROLL TO TOP ── */
+    #to-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 40px; height: 40px;
+      background: var(--bg2); border: 1px solid var(--border2);
+      color: var(--p); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; pointer-events: none;
+      transition: opacity .2s, border-color .2s;
+    }
+    #to-top.visible { opacity: 1; pointer-events: auto; }
+    #to-top:hover { border-color: var(--p); }
+    #to-top svg { display: block; }
   </style>
 </head>
 <body>
@@ -626,7 +640,6 @@
       </div>
       <div class="xlinks">
         <a class="xlink" href="https://x.com/0xJordyV/status/1495882640225976321" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Monkettes early</a>
-        <a class="xlink" href="https://x.com/0xJordyV/status/1482811431418572808" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Mint process</a>
         <a class="xlink" href="https://x.com/thejpeglord/status/1461439445224366087" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Airdrop</a>
         <a class="xlink" href="https://x.com/MrCamel__/status/1583108594861371395" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Community mention</a>
       </div>
@@ -698,6 +711,7 @@
         <span class="chip">10k NFTs</span>
       </div>
       <div class="xlinks">
+        <a class="xlink" href="https://x.com/0xJordyV/status/1482811431418572808" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Bitmon mint</a>
         <a class="xlink" href="https://x.com/0xJordyV/status/1505307053392384004" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Bitmon plushies</a>
         <a class="xlink" href="https://x.com/0xJordyV/status/1502342991591137289" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Bitmon tweet</a>
       </div>
@@ -746,7 +760,7 @@
         <span class="chip">8,888 NFTs</span>
       </div>
       <div class="xlinks">
-        <a class="xlink" href="https://x.com/0xJordyV/status/1657544565157445632" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>How to mint (my page)</a>
+        <a class="xlink" href="https://x.com/0xJordyV/status/1657544565157445632" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>How to mint</a>
         <a class="xlink" href="https://x.com/0xJordyV/status/1657100529363828736" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Mint work proof</a>
         <a class="xlink" href="https://x.com/0xJordyV/status/1649840741517017089" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>VK tweet 1</a>
         <a class="xlink" href="https://x.com/0xJordyV/status/1644432940477083664" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>VK tweet 2</a>
@@ -777,6 +791,7 @@
       <p class="tl-body">
         Built Vibing's $BONK dapp from scratch. Connect wallet → pick a target → send $BONK.
         Real-time counter, scrolling leaderboard, one-click tweet sharing.
+        It went viral because you could bonk Web3 celebrities: Frank DeGods, Sam Bankman-Fried, and other big names in the ecosystem.
         Reached <strong>30,000+ on-chain interactions</strong>, making Vibing one of
         the most-used $BONK destinations at launch.
       </p>
@@ -789,8 +804,9 @@
       <div class="xlinks">
         <a class="xlink" href="https://x.com/luis9614/status/1610314237598990338" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Bonk dapp live</a>
       </div>
-      <div class="ig c1">
+      <div class="ig c2">
         <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/bonk-activation.webp" alt="$BONK dapp" /></div>
+        <div class="slot r169 zoomable" onclick="openLB(this.querySelector('img').src,this.querySelector('img').alt)"><img loading="lazy" decoding="async" src="images/sambonk.jfif" alt="Sam BONK" /></div>
       </div>
     </div>
 
@@ -1011,7 +1027,7 @@
       </div>
       <div class="m-row">
         <span class="m-k">In crypto since</span>
-        <span class="m-v">2018 — PolisPay / PolisChain</span>
+        <span class="m-v">2018, PolisPay / PolisChain</span>
       </div>
       <div class="m-row">
         <span class="m-k">Socials</span>
@@ -1058,5 +1074,16 @@
   <div class="ft-bottom">Single file · No build tools · GitHub Pages</div>
 </footer>
 
+<button id="to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+  (function(){
+    var btn = document.getElementById('to-top');
+    window.addEventListener('scroll', function(){
+      btn.classList.toggle('visible', window.scrollY > 400);
+    }, {passive:true});
+  })();
+</script>
 </body>
 </html>

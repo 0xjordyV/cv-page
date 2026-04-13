@@ -1,4 +1,4 @@
-# 🧬 Jorge Villalobos  — Portfolio
+# 🧬 Jorge Villalobos - Portfolio
 
 Welcome to my professional narrative. This space is a journey through my evolution as an engineer, from architecting decentralized ecosystems to building the future of AI-driven automation.
 

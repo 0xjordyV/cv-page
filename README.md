@@ -15,12 +15,6 @@ Former **CIO at Vibing Studios**, where I led technical strategy and development
 ### **Digital Innovation**
 A track record of taking complex ideas from concept to deployment, focusing on performance, scalability, and seamless user experiences.
 
-## 📈 Featured Projects
-* **INEGI / Enlace Informático:** Modernizing data workflows through AI and advanced analysis.
-* **$BONK Activation:** High-traffic decentralized application with over 30,000 real-time interactions.
-* **Monkettes & Bitmon:** End-to-end architecture for digital collections and Play-to-Earn gaming ecosystems.
-* **Automation Consulting:** Helping businesses scale through custom-built intelligent agents.
-
 ## 📩 Connect & Collaborate
 I am always open to discussing new technologies, remote Web3 opportunities, or AI automation projects.
 

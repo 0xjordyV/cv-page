@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X Posts — Jorge Villalobos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #08080e;
+      --bg2:     #0d0d16;
+      --bg3:     #12121c;
+      --p:       #9d00ff;
+      --p2:      #bf5fff;
+      --g:       #00ff9d;
+      --g2:      #00cc7a;
+      --text:    #d8d8e8;
+      --muted:   #4a4a62;
+      --muted2:  #7878a0;
+      --border:  #16162a;
+      --border2: #22223a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: var(--p2); text-decoration: none; transition: color .15s; }
+    a:hover { color: #fff; }
+
+    /* scanline */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,.06) 2px,
+        rgba(0,0,0,.06) 4px
+      );
+    }
+    body > * { position: relative; z-index: 1; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 52px;
+      background: rgba(8,8,14,.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border2);
+    }
+    .nav-logo {
+      font-size: 12px; font-weight: 800; color: #fff;
+      letter-spacing: .5px; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--g);
+      box-shadow: 0 0 8px var(--g), 0 0 16px rgba(0,255,157,.4);
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted2); transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--g); }
+
+    /* ── PAGE ── */
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+    .page-head {
+      padding: 120px 0 56px;
+    }
+    .sec-label {
+      font-size: 10px; font-weight: 800; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--g);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sec-label::before { content: ''; width: 20px; height: 1px; background: var(--g); display: block; }
+    .sec-h {
+      font-size: clamp(34px, 5vw, 52px); font-weight: 900;
+      letter-spacing: -2.5px; color: #fff; line-height: .95;
+      margin-bottom: 18px;
+    }
+    .sec-sub { font-size: 14px; color: var(--muted2); max-width: 540px; line-height: 1.8; }
+
+    /* ── GROUPS ── */
+    .group { margin-bottom: 72px; }
+    .group-label {
+      font-size: 10px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--g2);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border2);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .group-label span {
+      font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 2px;
+      background: rgba(0,255,157,.1); color: var(--g);
+      border: 1px solid rgba(0,255,157,.25);
+    }
+
+    /* ── TWEET GRID ── */
+    .tweet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    /* tweet widget wrapper — enforce dark background, clip overflow */
+    .tweet-wrap {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+      min-height: 180px;
+      display: flex; align-items: stretch;
+    }
+    .tweet-wrap:hover { border-color: var(--p); transform: translateY(-2px); }
+    .tweet-wrap > * { flex: 1; }
+
+    /* tweet loading skeleton */
+    .tweet-skel {
+      display: flex; align-items: center; justify-content: center;
+      padding: 32px; flex-direction: column; gap: 8px;
+      color: var(--muted);
+    }
+    .tweet-skel svg { opacity: .3; }
+    .tweet-skel p { font-size: 11px; letter-spacing: .5px; }
+
+    /* override twitter widget default white background */
+    .tweet-wrap iframe { background: transparent !important; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border2);
+      padding: 52px 48px 36px;
+      margin-top: 80px;
+    }
+    .ft { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; flex-wrap: wrap; }
+    .ft-name { font-size: 16px; font-weight: 900; color: #fff; letter-spacing: -.3px; margin-bottom: 4px; }
+    .ft-role { font-size: 11px; color: var(--muted); letter-spacing: .3px; }
+    .ft-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .ft-a {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; color: var(--muted2); transition: color .18s;
+    }
+    .ft-a:hover { color: var(--g); }
+    .ft-bottom {
+      max-width: 960px; margin: 28px auto 0;
+      padding-top: 18px; border-top: 1px solid var(--border);
+      font-size: 10px; color: #1e1e32; letter-spacing: .5px;
+    }
+
+    @media (max-width: 720px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 18px; }
+      .wrap { padding: 0 20px; }
+      .tweet-grid { grid-template-columns: 1fr; }
+      footer { padding: 40px 20px 28px; }
+      .ft { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><div class="nav-dot"></div>Jorge Villalobos</a>
+  <div class="nav-links">
+    <a href="index.html#timeline">Story</a>
+    <a href="x-posts.html" class="active">X Posts</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-head">
+    <p class="sec-label">Social proof</p>
+    <h1 class="sec-h">X Posts</h1>
+    <p class="sec-sub">A record of my work — shipped dapps, mint pages, NFT drops, and activations, documented in real time on X (Twitter).</p>
+  </div>
+
+  <!-- ─── VIBE KNIGHTS ─── -->
+  <div class="group">
+    <p class="group-label">Vibe Knights <span>2022–2023</span></p>
+    <div class="tweet-grid">
+      <div class="tweet-wrap" id="tw-1657544565157445632">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+      <div class="tweet-wrap" id="tw-1657100529363828736">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+      <div class="tweet-wrap" id="tw-1649840741517017089">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+      <div class="tweet-wrap" id="tw-1644432940477083664">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── BONK ─── -->
+  <div class="group">
+    <p class="group-label">$BONK Activation <span>2023</span></p>
+    <div class="tweet-grid">
+      <div class="tweet-wrap" id="tw-1610314237598990338">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── NFT NYC ─── -->
+  <div class="group">
+    <p class="group-label">NFT NYC <span>2022</span></p>
+    <div class="tweet-grid">
+      <div class="tweet-wrap" id="tw-1539701359670337537">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+      <div class="tweet-wrap" id="tw-1539648883948941312">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── BITMON ─── -->
+  <div class="group">
+    <p class="group-label">Bitmon <span>2022</span></p>
+    <div class="tweet-grid">
+      <div class="tweet-wrap" id="tw-1505307053392384004">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+      <div class="tweet-wrap" id="tw-1502342991591137289">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MONKETTES ─── -->
+  <div class="group">
+    <p class="group-label">Monkettes <span>2021–2022</span></p>
+    <div class="tweet-grid">
+      <div class="tweet-wrap" id="tw-1495882640225976321">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+      <div class="tweet-wrap" id="tw-1482811431418572808">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+      <div class="tweet-wrap" id="tw-1461439445224366087">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+      <div class="tweet-wrap" id="tw-1583108594861371395">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── POLISPAY ─── -->
+  <div class="group">
+    <p class="group-label">PolisPay / PolisChain <span>2018</span></p>
+    <div class="tweet-grid">
+      <div class="tweet-wrap" id="tw-1035604384166506497">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ASTRA ARC ─── -->
+  <div class="group">
+    <p class="group-label">Astra Arc <span>2024</span></p>
+    <div class="tweet-grid">
+      <div class="tweet-wrap" id="tw-2024596877803442443">
+        <div class="tweet-skel"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><p>Loading tweet…</p></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-name">Jorge Luis Villalobos</div>
+      <div class="ft-role">Automation Consultant · ex-CIO Vibing Studios · crypto since 2018</div>
+    </div>
+    <div class="ft-links">
+      <a href="mailto:jmedrano0929@gmail.com" class="ft-a">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8"/></svg>
+        jmedrano0929@gmail.com
+      </a>
+      <a href="https://x.com/0xJordyV" class="ft-a" target="_blank" rel="noopener">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        @0xJordyV
+      </a>
+      <a href="https://linkedin.com/in/jorgeluis009" class="ft-a" target="_blank" rel="noopener">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.8"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.8"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.8"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/0xjarz" class="ft-a" target="_blank" rel="noopener">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        0xjarz
+      </a>
+    </div>
+  </div>
+  <div class="ft-bottom">Single file · No build tools · GitHub Pages</div>
+</footer>
+
+<!-- Twitter/X embed widget -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script>
+  /*
+    Tweets to embed — map: container-id → tweet URL
+    Twitter embed widget renders into the container replacing the skeleton.
+    Theme is passed as data-theme="dark" via the blockquote.
+  */
+  var tweets = [
+    /* Vibe Knights */
+    ['tw-1657544565157445632', 'https://x.com/0xJordyV/status/1657544565157445632'],
+    ['tw-1657100529363828736', 'https://x.com/0xJordyV/status/1657100529363828736'],
+    ['tw-1649840741517017089', 'https://x.com/0xJordyV/status/1649840741517017089'],
+    ['tw-1644432940477083664', 'https://x.com/0xJordyV/status/1644432940477083664'],
+    /* Bonk */
+    ['tw-1610314237598990338', 'https://x.com/luis9614/status/1610314237598990338'],
+    /* NYC */
+    ['tw-1539701359670337537', 'https://x.com/0xJordyV/status/1539701359670337537'],
+    ['tw-1539648883948941312', 'https://x.com/0xJordyV/status/1539648883948941312'],
+    /* Bitmon */
+    ['tw-1505307053392384004', 'https://x.com/0xJordyV/status/1505307053392384004'],
+    ['tw-1502342991591137289', 'https://x.com/0xJordyV/status/1502342991591137289'],
+    /* Monkettes */
+    ['tw-1495882640225976321', 'https://x.com/0xJordyV/status/1495882640225976321'],
+    ['tw-1482811431418572808', 'https://x.com/0xJordyV/status/1482811431418572808'],
+    ['tw-1461439445224366087', 'https://x.com/thejpeglord/status/1461439445224366087'],
+    ['tw-1583108594861371395', 'https://x.com/MrCamel__/status/1583108594861371395'],
+    /* PolisPay */
+    ['tw-1035604384166506497', 'https://x.com/PolisChain/status/1035604384166506497'],
+    /* Astra Arc */
+    ['tw-2024596877803442443', 'https://x.com/AstraArc/status/2024596877803442443'],
+  ];
+
+  function embedAll() {
+    tweets.forEach(function(pair) {
+      var id   = pair[0];
+      var url  = pair[1];
+      var wrap = document.getElementById(id);
+      if (!wrap) return;
+
+      /* clear skeleton */
+      wrap.innerHTML = '';
+
+      twttr.widgets.createTweet(
+        url.split('/status/')[1],          /* tweet id */
+        wrap,
+        {
+          theme: 'dark',
+          dnt: true,
+          conversation: 'none',
+          /* resolve the author handle from the URL */
+          tweetAuthor: url.split('x.com/')[1].split('/status')[0]
+        }
+      ).then(function(el) {
+        if (!el) {
+          /* embed failed — show fallback link */
+          wrap.innerHTML =
+            '<a href="' + url + '" target="_blank" rel="noopener" '+
+            'style="display:flex;align-items:center;justify-content:center;'+
+            'gap:8px;padding:24px;font-size:12px;color:var(--muted2);'+
+            'text-decoration:none;width:100%;font-family:Inter,sans-serif;">'+
+            '<svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">'+
+            '<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231'+
+            '-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm'+
+            '-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'+
+            'View on X (Twitter) →</a>';
+        }
+      });
+    });
+  }
+
+  /* Wait for twitter widget script to be ready */
+  if (typeof twttr !== 'undefined' && twttr.ready) {
+    twttr.ready(embedAll);
+  } else {
+    window.twttr = window.twttr || {};
+    var _oldOnLoad = window.onload;
+    window.onload = function() {
+      if (_oldOnLoad) _oldOnLoad();
+      if (typeof twttr !== 'undefined' && twttr.ready) {
+        twttr.ready(embedAll);
+      }
+    };
+    document.addEventListener('DOMContentLoaded', function() {
+      /* poll until twttr is ready */
+      var tries = 0;
+      var poll = setInterval(function() {
+        tries++;
+        if (typeof twttr !== 'undefined' && twttr.widgets) {
+          clearInterval(poll);
+          embedAll();
+        }
+        if (tries > 60) clearInterval(poll);
+      }, 300);
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Gemini / AI tools
+.gemini/
+
+# Logs
+*.log
+
+# Temp
+*.tmp
+*.bak
+
+CLAUDE.md
+cv-visual.pdf
+instructions.md
+links.txt
+oldindex.html
